@@ -5,36 +5,38 @@
 	<title>Burgers!</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="/public/assets/css/burger_style.css">
+  <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
 </head>
 <body>
 <div class="container">
 
 	<div class="text-center">
-    <img class="text-center" src="/public/assets/img/burger.png">
+    <img class="text-center" src="/assets/img/burger.png">
     <h1 class="display-3 text-center">Burgers!</h1> 
-    <p class="lead">Add a burger, then click DEVOUR! to eat it. It's pretty straightforward.</p>
+    <p class="lead">Add a burger, then click on it to eat it. It's pretty straightforward.</p>
   </div>
+
   <div class="row" id="burgersRow">
-    <div class="col-md-6" id="added-burgers">
-      
+    <div class="col-md-8" id="added-burgers">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>On The Menu</h3>
+          </div>
+        </div>
         {{#each burgers}}
           {{#unless this.devoured}}
-            <div>
-              <div class="panel panel-default col-md-8">
-                <p>{{this.burger_name}}</p>
-              </div>
+            <div class="row">
               <form action="/{{this.id}}?_method=PUT" method="POST">
                 <input type="hidden" name="devoured" value="true">
-                <button class="btn btn-info col-md-4" type="submit">DEVOUR!</button>
+                <button class="btn btn-info col-md-12" type="submit">{{this.burger_name}}</button>
               </form>
             </div>
           {{/unless}}
         {{/each}}
       
     </div>
-    <div class="col-md-6" id="eaten-burgers">
-      
+    <div class="col-md-4" id="eaten-burgers">
+      <h3>Burgers Devoured</h3>
         {{#each burgers}}
           {{#if this.devoured}}
             <div class="panel panel-default col-md-12">
