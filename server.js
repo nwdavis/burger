@@ -8,7 +8,7 @@ var port = process.env.PORT || 3000;
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/static/", express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 // Override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
