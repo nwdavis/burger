@@ -16,8 +16,34 @@
     <p class="lead">Add a burger, then click it to eat it. It's pretty straightforward.</p>
   </div>
   <div class="row" id="burgersRow">
-    <div class="col-md-6" id="added-burgers"></div>
-    <div class="col-md-6" id="eaten-burgers"></div>
+    <div class="col-md-6" id="added-burgers">
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <div>
+            {{this.name}}
+            <form action="/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="devoured" value="true">
+              <button class="btn btn-info" type="submit">DEVOUR IT!</button>
+            </form>
+            {{>burgers/devour-burger}}
+          </div>
+        {{/unless}}
+      {{/each}}
+
+    </div>
+    <div class="col-md-6" id="eaten-burgers">
+      {{#each burgers}}
+        {{#if this.devoured}}
+          <div>
+            {{this.name}}
+          </div>
+        {{/if}}
+      {{/each}}
+
+
+
+
+    </div>
   </div>
   <div class="row justify-content-md-center">
     <div class="col-md-4">
@@ -33,17 +59,5 @@
 </div>
 
 </body>
-<script>
-  $("#add-burger-submit").on("click", function(){
-    event.preventDefault();
-    var newBurgerDiv = $("<div>");
-    var newBurgerButton = $("<button>");
-    newBurgerDiv.addClass("row justify-content-md-center");
-    newBurgerDiv.text($("#add-burger-text").val());
-    $("#added-burgers").append(newBurgerDiv);
-    newBurgerDiv.append(newBurgerButton);
-  })
 
-  $("#")
-</script>
 </html>
