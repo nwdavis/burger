@@ -2,6 +2,10 @@ button {
   margin: 10px;
 }
 
+.panel {
+  border: 1px solid red;
+}
+
 img {
   padding-top: 10px;
 }

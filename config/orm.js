@@ -23,15 +23,16 @@ function objToSql(ob) {
 }
 
 var orm = {
-  selectAll: function(tableInput, cb){
-    var queryString = "SELECT * FROM" + tableInput + ";";
+  all: function(tableInput, cb){
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    console.log(queryString);
     connection.query(queryString, function(err, result){
       if (err) {throw err;}
       cb(result);
     });
   },
-  insertOne: function(table, cols, vals, cb){
-    var queryString = "INSERT INTO" + table;
+  insert: function(table, cols, vals, cb){
+    var queryString = "INSERT INTO " + table;
 
     queryString += " (";
     queryString += cols.toString();
@@ -49,7 +50,7 @@ var orm = {
       cb(result);
     });
   },
-  updateOne: function(table, obvColVals, condition, cb){
+  update: function(table, obvColVals, condition, cb){
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
