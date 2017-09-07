@@ -1,5 +1,6 @@
 var connection = require('../config/connection.js');
 
+//helper function for sql query strings
 function printQuestionMarks(num) {
   var arr = [];
 
@@ -22,6 +23,7 @@ function objToSql(ob) {
   return arr.toString();
 }
 
+//sql handling
 var orm = {
   all: function(tableInput, cb){
     var queryString = "SELECT * FROM " + tableInput + ";";
